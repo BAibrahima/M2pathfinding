@@ -16,39 +16,39 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
-// find_distance_min
-// function qui determine le sommet ayant la plus petite distance int find_distance_min(NumericVector distance, LogicalVector visited, int n);
-RcppExport SEXP _M2pathfinding_find_distance_min(SEXP distanceSEXP, SEXP visitedSEXP, SEXP nSEXP) {
+// findMinVertex
+int findMinVertex(NumericVector distance, LogicalVector visited, int n);
+RcppExport SEXP _M2pathfinding_findMinVertex(SEXP distanceSEXP, SEXP visitedSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector >::type distance(distanceSEXP);
     Rcpp::traits::input_parameter< LogicalVector >::type visited(visitedSEXP);
     Rcpp::traits::input_parameter< int >::type n(nSEXP);
-    rcpp_result_gen = Rcpp::wrap(find_distance_min(distance, visited, n));
+    rcpp_result_gen = Rcpp::wrap(findMinVertex(distance, visited, n));
     return rcpp_result_gen;
 END_RCPP
 }
-// short_path
-void short_path(NumericVector parent, int j);
-RcppExport SEXP _M2pathfinding_short_path(SEXP parentSEXP, SEXP jSEXP) {
+// printPath
+void printPath(NumericVector parent, int j);
+RcppExport SEXP _M2pathfinding_printPath(SEXP parentSEXP, SEXP jSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector >::type parent(parentSEXP);
     Rcpp::traits::input_parameter< int >::type j(jSEXP);
-    short_path(parent, j);
+    printPath(parent, j);
     return R_NilValue;
 END_RCPP
 }
-// path
-void path(NumericVector dist, int n, NumericVector parent);
-RcppExport SEXP _M2pathfinding_path(SEXP distSEXP, SEXP nSEXP, SEXP parentSEXP) {
+// printSolution
+void printSolution(NumericVector dist, int n, NumericVector parent);
+RcppExport SEXP _M2pathfinding_printSolution(SEXP distSEXP, SEXP nSEXP, SEXP parentSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector >::type dist(distSEXP);
     Rcpp::traits::input_parameter< int >::type n(nSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type parent(parentSEXP);
-    path(dist, n, parent);
+    printSolution(dist, n, parent);
     return R_NilValue;
 END_RCPP
 }
@@ -65,9 +65,9 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_M2pathfinding_bellman_ford", (DL_FUNC) &_M2pathfinding_bellman_ford, 2},
-    {"_M2pathfinding_find_distance_min", (DL_FUNC) &_M2pathfinding_find_distance_min, 3},
-    {"_M2pathfinding_short_path", (DL_FUNC) &_M2pathfinding_short_path, 2},
-    {"_M2pathfinding_path", (DL_FUNC) &_M2pathfinding_path, 3},
+    {"_M2pathfinding_findMinVertex", (DL_FUNC) &_M2pathfinding_findMinVertex, 3},
+    {"_M2pathfinding_printPath", (DL_FUNC) &_M2pathfinding_printPath, 2},
+    {"_M2pathfinding_printSolution", (DL_FUNC) &_M2pathfinding_printSolution, 3},
     {"_M2pathfinding_dijkstra_cpp", (DL_FUNC) &_M2pathfinding_dijkstra_cpp, 1},
     {NULL, NULL, 0}
 };
